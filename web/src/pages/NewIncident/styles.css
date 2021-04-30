@@ -41,7 +41,8 @@
     max-width: 450px;
 }
 
-.newIncident-container .content form input {
+.newIncident-container .content form input,
+.newIncident-container .content form textarea {
     margin-top: 8px;
 }
 
