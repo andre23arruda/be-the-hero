@@ -2,8 +2,8 @@ function appendErrorMessages(response) {
     var messagesList = []
     for (var fieldError in response) {
         var messages = response[fieldError]
-        console.log(messages.join(' '))
-        messagesList.push(`${ fieldError }: ${ messages.join(' ') }`)
+        messages = messages.isArray ? messages.join(' ') : messages
+        messagesList.push(`${ fieldError }: ${ messages }`)
     }
     return messagesList
 }

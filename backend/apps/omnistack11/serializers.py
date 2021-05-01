@@ -22,8 +22,6 @@ class OngSessionSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 
-
-
 class IncidentSerializer(serializers.ModelSerializer):
 
     class Meta:

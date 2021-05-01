@@ -88,32 +88,7 @@ class OngIncidentsList(viewsets.ReadOnlyModelViewSet):
     pagination_class = None
 
 
-# class OngLogin(ListModelMixin, viewsets.GenericViewSet):
-#     '''Login da ONG'''
-#     queryset = []
-#     serializer_class = OngSessionSerializer
-#     http_method_names = ['get']
-
-#     def get_queryset(self):
-#         return Ong.objects.all()
-
-    # def create(self, serializer):
-    #     '''Cria sessão de login'''
-    #     request_body = self.request.body
-    #     request_body = request_body.decode('UTF-8')
-    #     print(self.kwargs)
-    #     # request_body = ast.literal_eval(request_body) # transforma bytes em json
-    #     # id = request_body['id']
-    #     # ong = get_object_or_404(Ong, id=id)
-    #     # serializer = OngSerializer(ong)
-
-    #     if True:
-    #         return Response({'teste': 'Deu bom'}, status=status.HTTP_200_OK)
-    #     return Response({'detail': 'No ONG found with this ID'}, status=status.HTTP_401_UNAUTHORIZED)
-
-
 class OngLogin(viewsets.ReadOnlyModelViewSet):
-# class OngLogin(generics.RetrieveAPIView):
     '''Listando as matriculas de um aluno'''
 
     serializer_class = OngSessionSerializer

@@ -6,7 +6,7 @@ import logoImg from '../../assets/logo.svg'
 import heroesImg from '../../assets/heroes.png'
 import { Link, useHistory } from 'react-router-dom'
 import { appendErrorMessages } from '../../utils/utils'
-import { postApi } from '../../services/api'
+import { getApi } from '../../services/api'
 
 
 function Logon() {
@@ -17,19 +17,19 @@ function Logon() {
     async function formLogon(event) {
         event.preventDefault()
 
-        const formData = {
-            id,
-        }
-
-        const response = await postApi('ongs/', formData)
+        const response = await getApi(`sessions/${ id }`)
         try {
+            console.log(response)
             if (response.id) {
-                alert(`Seu ID de acesso: ${ response.id }`)
-                history.push('/')
+                localStorage.setItem('ongId', response.id)
+                localStorage.setItem('ongName', response.name)
+                history.push('/profile')
+            } else {
+                console.log('ongId')
+                alert(`${ appendErrorMessages(response) }`)
             }
-            else alert(`${ appendErrorMessages(response) }`)
         } catch(err) {
-            alert(`Erro no cadastro. Tente novamente`)
+            alert(`Erro no login. Tente novamente`)
         }
     }
 
