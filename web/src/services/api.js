@@ -30,4 +30,19 @@ function getApi(route, auth='') {
     .then(response => response.json())
 }
 
-export { getApi, postApi }
+
+function deleteApi(route, auth='') {
+    return fetch(
+        baseUrl + route,
+        {
+            credentials: 'same-origin',
+            method: 'DELETE',
+            headers: new Headers({
+                'Authorization': auth,
+            })
+        }
+    )
+    .then(response => response.json())
+}
+
+export { getApi, postApi, deleteApi }

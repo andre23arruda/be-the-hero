@@ -4,7 +4,7 @@ import { FiArrowLeft } from 'react-icons/fi'
 import './styles.css'
 
 import logoImg from '../../assets/logo.svg'
-import { getApi, postApi } from '../../services/api'
+import { postApi } from '../../services/api'
 import { appendErrorMessages } from '../../utils/utils'
 
 function Register() {
