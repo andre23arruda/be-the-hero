@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
 import './styles.css'
 
@@ -8,11 +8,23 @@ import { getApi, postApi } from '../../services/api'
 
 function Register() {
 
+    const history = useHistory()
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [whatsapp, setWhatsapp] = useState('')
     const [city, setCity] = useState('')
     const [uf, setUf] = useState(0)
+
+    function appendErrorMessages(response) {
+        var messagesList = []
+        for (var fieldError in response) {
+            var messages = response[fieldError]
+            console.log(messages.join(' '))
+            messagesList.push(`${ fieldError }: ${ messages.join(' ') }`)
+        }
+        return messagesList
+    }
 
     async function formRegister(event) {
         event.preventDefault()
@@ -26,8 +38,15 @@ function Register() {
         }
 
         const response = await postApi('ongs/', formData)
-        console.log(response)
-
+        try {
+            if (response.id) {
+                alert(`Seu ID de acesso: ${ response.id }`)
+                history.push('/')
+            }
+            else alert(`${ appendErrorMessages(response) }`)
+        } catch(err) {
+            alert(`Erro no cadastro. Tente novamente`)
+        }
     }
 
   	return (
