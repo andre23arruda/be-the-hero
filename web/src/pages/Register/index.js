@@ -4,7 +4,6 @@ import { FiArrowLeft } from 'react-icons/fi'
 import './styles.css'
 
 import logoImg from '../../assets/logo.svg'
-import heroesImg from '../../assets/heroes.png'
 
 function Register() {
 
@@ -24,7 +23,7 @@ function Register() {
                 </section>
 
 
-                <form action="">
+                <form>
                     <input placeholder="Nome da ONG"/>
                     <input type="email" placeholder="Email"/>
                     <input placeholder="WhatsApp"/>
@@ -35,7 +34,6 @@ function Register() {
                     </div>
 
                     <button className="button" type="submit">Cadastrar</button>
-
                 </form>
             </div>
 

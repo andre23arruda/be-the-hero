@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
 import './styles.css'
 
 import logoImg from '../../assets/logo.svg'
-import heroesImg from '../../assets/heroes.png'
 
 function NewIncident() {
+
+    // const [name, setName] = useState('')
+    // const [description, setDescription] = useState('')
+    // const [value, setValue] = useState(0)
+
+    // function handleSubmit(event) {
+    //     event.preventDefault()
+
+    // }
 
   	return (
         <div className="newIncident-container">
@@ -23,12 +31,11 @@ function NewIncident() {
                 </section>
 
 
-                <form action="">
-                    <input placeholder="Nome da ONG"/>
+                <form>
+                    <input placeholder="Título"/>
                     <textarea placeholder="Descrição"></textarea>
                     <input placeholder="Valor (R$)"/>
                     <button className="button" type="submit">Cadastrar</button>
-
                 </form>
             </div>
 
