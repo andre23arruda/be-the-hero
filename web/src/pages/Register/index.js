@@ -14,7 +14,7 @@ function Register() {
     const [city, setCity] = useState('')
     const [uf, setUf] = useState(0)
 
-    function formRegister(event) {
+    async function formRegister(event) {
         event.preventDefault()
 
         const formData = {
@@ -25,7 +25,9 @@ function Register() {
             uf,
         }
 
-        console.log(formData)
+        const response = await postApi('ongs/', formData)
+        console.log(response)
+
     }
 
   	return (

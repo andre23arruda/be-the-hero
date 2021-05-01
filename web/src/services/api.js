@@ -4,10 +4,13 @@ function postApi(route, formData, auth='') {
     return fetch(
         baseUrl + route,
         {
+            credentials: 'same-origin',
             method: 'POST',
-            body: formData,
+            body: JSON.stringify(formData),
             headers: new Headers({
-                Authorization: auth
+                'Authorization': auth,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
             })
         }
     )
@@ -20,7 +23,7 @@ function getApi(route, auth='') {
         baseUrl + route,
         {
             headers: new Headers({
-                Authorization: auth
+                Authorization: auth,
             })
         }
     )

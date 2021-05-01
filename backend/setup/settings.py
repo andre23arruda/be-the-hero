@@ -92,14 +92,10 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # api configuration
 REST_FRAMEWORK = {
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning', # versionamento
     'DEFAULT_AUTHENTICATION_CLASSES': [ # autenticação
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     ],
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle'
-    ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning', # versionamento
 }
 
 # CORS
