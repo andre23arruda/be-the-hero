@@ -13,23 +13,22 @@ class OngSerializer(serializers.ModelSerializer):
         return data
 
 
+
+class OngSessionSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(max_length=8)
+
+    class Meta:
+        model = Ong
+        fields = ['id', 'name']
+
+
+
+
 class IncidentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Incident
         exclude = ['ong']
-
-    ## verificando headers no serializer, mas o oficial está na view
-    # def create(self, validated_data):
-    #     request = self.context.get('request')
-    #     incident = None
-    #     if 'Authorization' in request.headers:
-    #         id_for_login = request.headers['Authorization']
-    #         ong = get_object_or_404(Ong, id_for_login=id_for_login)
-    #         validated_data['ong'] = ong
-    #         incident = Incident.objects.create(**validated_data)
-    #         incident.save()
-    #     return incident
 
     def validate(self, data):
         return data

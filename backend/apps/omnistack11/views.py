@@ -6,10 +6,14 @@ from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import pagination
+from rest_framework.mixins import ListModelMixin
 
 import ast
 
-from .serializers import OngSerializer, IncidentSerializer, IncidentsListSerializer
+from .serializers import (
+    OngSerializer, OngSessionSerializer,
+    IncidentSerializer, IncidentsListSerializer
+)
 from .models import Ong, Incident
 
 
@@ -84,23 +88,49 @@ class OngIncidentsList(viewsets.ReadOnlyModelViewSet):
     pagination_class = None
 
 
+# class OngLogin(ListModelMixin, viewsets.GenericViewSet):
+#     '''Login da ONG'''
+#     queryset = []
+#     serializer_class = OngSessionSerializer
+#     http_method_names = ['get']
+
+#     def get_queryset(self):
+#         return Ong.objects.all()
+
+    # def create(self, serializer):
+    #     '''Cria sessão de login'''
+    #     request_body = self.request.body
+    #     request_body = request_body.decode('UTF-8')
+    #     print(self.kwargs)
+    #     # request_body = ast.literal_eval(request_body) # transforma bytes em json
+    #     # id = request_body['id']
+    #     # ong = get_object_or_404(Ong, id=id)
+    #     # serializer = OngSerializer(ong)
+
+    #     if True:
+    #         return Response({'teste': 'Deu bom'}, status=status.HTTP_200_OK)
+    #     return Response({'detail': 'No ONG found with this ID'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
 class OngLogin(viewsets.ReadOnlyModelViewSet):
-    '''Login da ONG'''
-    queryset = Ong.objects.all()
-    serializer_class = OngSerializer
+# class OngLogin(generics.RetrieveAPIView):
+    '''Listando as matriculas de um aluno'''
 
-    def create(self, serializer):
-        '''Cria sessão de login'''
-        request_body = self.request.body
-        request_body = request_body.decode('UTF-8')
-        request_body = ast.literal_eval(request_body) # transforma bytes em json
-        id = request_body['id']
-        ong = get_object_or_404(Ong, id=id)
-        serializer = OngSerializer(ong)
+    serializer_class = OngSessionSerializer
+    ueryset = Ong.objects.all()
+    http_method_names = ['get']
 
-        if ong:
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response({'detail': 'No ONG found with this ID'}, status=status.HTTP_400_UNAUTHORIZED)
+    def get_queryset(self):
+        '''Função para filtrar as informações de um aluno com a chave'''
+        queryset = []
+        if 'pk' in self.kwargs:
+            queryset = Ong.objects.filter(pk=self.kwargs['pk'])
+        return queryset
 
-    serializer_class = OngSerializer
-    pagination_class = None
+    def retrieve(self, request, *args, **kwargs):
+        instance = Ong.objects.filter(pk=self.kwargs['pk'])
+        if instance:
+            serializer = self.get_serializer(instance.first())
+            return Response(serializer.data)
+        else:
+            return Response({'detail': 'No ONG found with this ID'}, status=status.HTTP_401_UNAUTHORIZED)

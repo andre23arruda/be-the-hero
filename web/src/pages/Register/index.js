@@ -5,6 +5,7 @@ import './styles.css'
 
 import logoImg from '../../assets/logo.svg'
 import { getApi, postApi } from '../../services/api'
+import { appendErrorMessages } from '../../utils/utils'
 
 function Register() {
 
@@ -15,16 +16,6 @@ function Register() {
     const [whatsapp, setWhatsapp] = useState('')
     const [city, setCity] = useState('')
     const [uf, setUf] = useState(0)
-
-    function appendErrorMessages(response) {
-        var messagesList = []
-        for (var fieldError in response) {
-            var messages = response[fieldError]
-            console.log(messages.join(' '))
-            messagesList.push(`${ fieldError }: ${ messages.join(' ') }`)
-        }
-        return messagesList
-    }
 
     async function formRegister(event) {
         event.preventDefault()
