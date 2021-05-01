@@ -1,20 +1,44 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
-import './styles.css'
+import { postApi } from '../../services/api'
 
+import './styles.css'
 import logoImg from '../../assets/logo.svg'
+import { appendErrorMessages } from '../../utils/utils'
+
 
 function NewIncident() {
 
-    // const [name, setName] = useState('')
-    // const [description, setDescription] = useState('')
-    // const [value, setValue] = useState(0)
+    const history = useHistory()
 
-    // function handleSubmit(event) {
-    //     event.preventDefault()
+    const ongId = localStorage.getItem('ongId')
 
-    // }
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [value, setValue] = useState(0)
+
+    async function formIncident(event) {
+        event.preventDefault()
+
+        const formData = {
+            title,
+            description,
+            value,
+            ong: ongId,
+        }
+
+        const response = await postApi('incidents/', formData, ongId)
+        try {
+            if (response.title) {
+                alert(`Incidente cadastrado`)
+                history.push('/profile')
+            }
+            else alert(`${ appendErrorMessages(response) }`)
+        } catch(err) {
+            alert(`Erro no cadastro. Tente novamente`)
+        }
+    }
 
   	return (
         <div className="newIncident-container">
@@ -31,10 +55,10 @@ function NewIncident() {
                 </section>
 
 
-                <form>
-                    <input placeholder="Título"/>
-                    <textarea placeholder="Descrição"></textarea>
-                    <input placeholder="Valor (R$)"/>
+                <form onSubmit={ formIncident }>
+                    <input placeholder="Título" onChange={ e => setTitle(e.target.value) } />
+                    <textarea placeholder="Descrição" onChange={ e => setDescription(e.target.value) }></textarea>
+                    <input placeholder="Valor (R$)" onChange={ e => setValue(e.target.value) }/>
                     <button className="button" type="submit">Cadastrar</button>
                 </form>
             </div>
