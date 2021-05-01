@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
 import './styles.css'
 
 import logoImg from '../../assets/logo.svg'
+import { getApi, postApi } from '../../services/api'
 
 function Register() {
+
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [whatsapp, setWhatsapp] = useState('')
+    const [city, setCity] = useState('')
+    const [uf, setUf] = useState(0)
+
+    function formRegister(event) {
+        event.preventDefault()
+
+        const formData = {
+            name,
+            email,
+            whatsapp,
+            city,
+            uf,
+        }
+
+        console.log(formData)
+    }
 
   	return (
         <div className="register-container">
@@ -23,14 +44,14 @@ function Register() {
                 </section>
 
 
-                <form>
-                    <input placeholder="Nome da ONG"/>
-                    <input type="email" placeholder="Email"/>
-                    <input placeholder="WhatsApp"/>
+                <form onSubmit={ formRegister }>
+                    <input placeholder="Nome da ONG" onChange={ e => setName(e.target.value )}/>
+                    <input type="email" placeholder="Email" onChange={ e => setEmail(e.target.value )}/>
+                    <input placeholder="WhatsApp" onChange={ e => setWhatsapp(e.target.value )}/>
 
                     <div className="input-group">
-                        <input placeholder="Cidade"/>
-                        <input placeholder="UF"/>
+                        <input placeholder="Cidade" onChange={ e => setCity(e.target.value )}/>
+                        <input placeholder="UF" onChange={ e => setUf(e.target.value )}/>
                     </div>
 
                     <button className="button" type="submit">Cadastrar</button>
