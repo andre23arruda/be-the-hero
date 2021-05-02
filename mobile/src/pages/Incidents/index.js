@@ -4,9 +4,15 @@ import { Feather } from '@expo/vector-icons'
 import logoImg from '../../assets/logo.png'
 import styles from './styles'
 import { FlatList } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/core'
 
 
 function Incidents() {
+
+    const navigation = useNavigation()
+    function navigateToDetail() {
+        navigation.navigate('Detail')
+    }
 
   	return (
         <View style={ styles.container }>
@@ -21,8 +27,10 @@ function Incidents() {
             <Text style={ styles.description }>Escolha um dos casos abaixo e salve o dia.</Text>
 
 
+            {/* Lista de incidentes, com chave de cada item e sem barra de scroll */}
             <FlatList
                 style={ styles.incidentsList }
+                showsVerticalScrollIndicator={ false }
                 data={ [1, 2, 3, 4] }
                 keyExtractor={ incident => String(incident) }
                 renderItem={ () => {
@@ -39,7 +47,7 @@ function Incidents() {
 
                             <TouchableOpacity
                                 style={ styles.detailsButton }
-                                onPress={ () => {} }
+                                onPress={ navigateToDetail }
                             >
                                 <Text style={ styles.detailsButtonText }>Ver mais detalhes</Text>
                                 <Feather name="arrow-right" size={ 16 } color="#E02041"/>
