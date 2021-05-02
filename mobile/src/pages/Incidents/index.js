@@ -18,17 +18,33 @@ function Incidents() {
     const [incidents, setIncidents] = useState([])
     const [total, setTotal] = useState(0)
 
+    const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(false)
+
     async function loadIncidents() {
-        const response = await getApi('incidents')
-        setIncidents(response.results)
+        if (loading) {
+            return
+        }
+
+        if (total > 0 && incidents.length === total) {
+            return
+        }
+
+        setLoading(true)
+
+        const response = await getApi(`incidents/?page=${ page }`)
+
+        setIncidents(incidents.concat(response.results))
         setTotal(response.count)
+        setPage(page + 1)
+        setLoading(false)
     }
 
     useEffect(() => {
         loadIncidents()
     }, [])
 
-  	return (
+ 	return (
         <View style={ styles.container }>
             <View style={ styles.header }>
                 <Image source={ logoImg }/>
@@ -44,7 +60,9 @@ function Incidents() {
             {/* Lista de incidentes, com chave de cada item e sem barra de scroll */}
             <FlatList
                 style={ styles.incidentsList }
-                showsVerticalScrollIndicator={ false }
+                showsVerticalScrollIndicator={ true }
+                onEndReached={ loadIncidents }
+                onEndReachedThreshold={ 0.2 }
                 data={ incidents }
                 keyExtractor={ incident => String(incident.id) }
                 renderItem={ ({item: incident}) => {
