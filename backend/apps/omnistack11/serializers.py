@@ -24,9 +24,18 @@ class OngSessionSerializer(serializers.ModelSerializer):
 
 class IncidentSerializer(serializers.ModelSerializer):
 
+    ong_name = serializers.ReadOnlyField(source='ong.name')
+
     class Meta:
         model = Incident
-        exclude = ['ong']
+        fields = [
+            'id',
+            'title',
+            'description',
+            'value',
+            'ong',
+            'ong_name',
+        ]
 
     def validate(self, data):
         return data
