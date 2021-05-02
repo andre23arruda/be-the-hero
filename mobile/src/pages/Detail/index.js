@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import logoImg from '../../assets/logo.png'
 import styles from './styles'
@@ -26,6 +26,7 @@ function Detail() {
 	}
 
 	function sendMessage() {
+		Linking.openURL(`whatsapp://send?phone=5599999999999&text=${ message }`)
 
 	}
 
@@ -55,7 +56,7 @@ function Detail() {
 
 				<Text style={ styles.heroDescription }>Entre em contato:</Text>
 				<View style={ styles.actions }>
-					<TouchableOpacity onPress={ () => {} } style={ styles.action }>
+					<TouchableOpacity onPress={ sendMessage } style={ styles.action }>
 						<Text style={ styles.actionText }>WhatsApp</Text>
 					</TouchableOpacity>
 
