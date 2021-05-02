@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import logoImg from '../../assets/logo.png'
 import styles from './styles'
+import { FlatList } from 'react-native-gesture-handler'
 
 
 function Incidents() {
@@ -19,26 +20,34 @@ function Incidents() {
             <Text style={ styles.title }>Bem-vindo!</Text>
             <Text style={ styles.description }>Escolha um dos casos abaixo e salve o dia.</Text>
 
-            <View style={ styles.incidentsList }>
-                <View style={ styles.incident }>
-                    <Text style={ styles.incidentProp }>ONG</Text>
-                    <Text style={ styles.incidentValue }>APAD</Text>
 
-                    <Text style={ styles.incidentProp }>CASO:</Text>
-                    <Text style={ styles.incidentValue }>Cadelinha Atropelada</Text>
+            <FlatList
+                style={ styles.incidentsList }
+                data={ [1, 2, 3, 4] }
+                keyExtractor={ incident => String(incident) }
+                renderItem={ () => {
+                    return (
+                        <View style={ styles.incident }>
+                            <Text style={ styles.incidentProp }>ONG</Text>
+                            <Text style={ styles.incidentValue }>APAD</Text>
 
-                    <Text style={ styles.incidentProp }>Valor:</Text>
-                    <Text style={ styles.incidentValue }>R$ 120,00</Text>
+                            <Text style={ styles.incidentProp }>CASO:</Text>
+                            <Text style={ styles.incidentValue }>Cadelinha Atropelada</Text>
 
-                    <TouchableOpacity
-                        style={ styles.detailsButton }
-                        onPress={ () => {} }
-                    >
-                        <Text style={ styles.detailsButtonText }>Ver mais detalhes</Text>
-                        <Feather name="arrow-right" size={ 16 } color="#E02041"/>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                            <Text style={ styles.incidentProp }>Valor:</Text>
+                            <Text style={ styles.incidentValue }>R$ 120,00</Text>
+
+                            <TouchableOpacity
+                                style={ styles.detailsButton }
+                                onPress={ () => {} }
+                            >
+                                <Text style={ styles.detailsButtonText }>Ver mais detalhes</Text>
+                                <Feather name="arrow-right" size={ 16 } color="#E02041"/>
+                            </TouchableOpacity>
+                        </View>
+                    )
+                }}
+            />
         </View>
   	)
 }
