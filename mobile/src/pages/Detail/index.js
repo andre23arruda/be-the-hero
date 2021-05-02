@@ -5,7 +5,7 @@ import logoImg from '../../assets/logo.png'
 import styles from './styles'
 import { FlatList } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/core'
-
+import * as MailComposer from 'expo-mail-composer'
 
 function Detail() {
 
@@ -13,6 +13,21 @@ function Detail() {
     function navigateToIncidents() {
         navigation.navigate('Incidents')
     }
+
+	const message = `Olá ONG, gostaria de ajudar no caso "TESTE" com o valor de R$ 120,00.`
+
+	function sendEmail() {
+		MailComposer.composeAsync({
+			subject: `Herói do caso "TESTE"`,
+			recipients: ['andre23arruda@gmail.com'],
+			body: message,
+		})
+
+	}
+
+	function sendMessage() {
+
+	}
 
   	return (
         <View style={ styles.container }>
@@ -44,7 +59,7 @@ function Detail() {
 						<Text style={ styles.actionText }>WhatsApp</Text>
 					</TouchableOpacity>
 
-					<TouchableOpacity onPress={ () => {} } style={ styles.action }>
+					<TouchableOpacity onPress={ sendEmail } style={ styles.action }>
 						<Text style={ styles.actionText }>Email</Text>
 					</TouchableOpacity>
 				</View>
