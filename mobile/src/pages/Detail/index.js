@@ -3,8 +3,7 @@ import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import logoImg from '../../assets/logo.png'
 import styles from './styles'
-import { FlatList } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation, useRoute } from '@react-navigation/core'
 import * as MailComposer from 'expo-mail-composer'
 
 function Detail() {
@@ -14,19 +13,22 @@ function Detail() {
         navigation.navigate('Incidents')
     }
 
-	const message = `Olá ONG, gostaria de ajudar no caso "TESTE" com o valor de R$ 120,00.`
+	const route = useRoute()
+	const incident = route.params.incident
+
+	const message = `Olá ${ incident.ong_name }, gostaria de ajudar no caso "${ incident.title }" com o valor de R$ 120,00.`
 
 	function sendEmail() {
 		MailComposer.composeAsync({
-			subject: `Herói do caso "TESTE"`,
-			recipients: ['andre23arruda@gmail.com'],
+			subject: `Herói do caso "${ incident.title }"`,
+			recipients: [incident.ong_email],
 			body: message,
 		})
 
 	}
 
 	function sendMessage() {
-		Linking.openURL(`whatsapp://send?phone=5599999999999&text=${ message }`)
+		Linking.openURL(`whatsapp://send?phone=55${ incident.ong_whatsapp }&text=${ message }`)
 
 	}
 
@@ -41,13 +43,16 @@ function Detail() {
 
 			<View style={ styles.incident }>
 				<Text style={ styles.incidentProp }>ONG</Text>
-				<Text style={ styles.incidentValue }>APAD</Text>
+				<Text style={ styles.incidentValue }>{ incident.ong_name } ({ incident.ong_city }-{ incident.ong_uf })</Text>
 
 				<Text style={ styles.incidentProp }>CASO:</Text>
-				<Text style={ styles.incidentValue }>Cadelinha Atropelada</Text>
+				<Text style={ styles.incidentValue }>{ incident.title }</Text>
+
+				<Text style={ styles.incidentProp }>DESCRIÇÃO:</Text>
+				<Text style={ styles.incidentValue }>{ incident.description }</Text>
 
 				<Text style={ styles.incidentProp }>Valor:</Text>
-				<Text style={ styles.incidentValue }>R$ 120,00</Text>
+				<Text style={ styles.incidentValue }>R$ { incident.value.toFixed(2) }</Text>
 			</View>
 
 			<View style={ styles.contactBox }>

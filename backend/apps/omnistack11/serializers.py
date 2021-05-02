@@ -25,6 +25,10 @@ class OngSessionSerializer(serializers.ModelSerializer):
 class IncidentSerializer(serializers.ModelSerializer):
 
     ong_name = serializers.ReadOnlyField(source='ong.name')
+    ong_email = serializers.ReadOnlyField(source='ong.email')
+    ong_whatsapp = serializers.ReadOnlyField(source='ong.whatsapp')
+    ong_city = serializers.ReadOnlyField(source='ong.city')
+    ong_uf = serializers.ReadOnlyField(source='ong.uf')
 
     class Meta:
         model = Incident
@@ -35,6 +39,10 @@ class IncidentSerializer(serializers.ModelSerializer):
             'value',
             'ong',
             'ong_name',
+            'ong_email',
+            'ong_whatsapp',
+            'ong_city',
+            'ong_uf',
         ]
 
     def validate(self, data):

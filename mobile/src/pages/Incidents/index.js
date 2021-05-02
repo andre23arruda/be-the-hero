@@ -12,7 +12,7 @@ function Incidents() {
 
     const navigation = useNavigation()
     function navigateToDetail(incident) {
-        navigation.navigate('Detail', incident)
+        navigation.navigate('Detail', { incident })
     }
 
     const [incidents, setIncidents] = useState([])
@@ -51,10 +51,10 @@ function Incidents() {
                     return (
                         <View style={ styles.incident }>
                             <Text style={ styles.incidentProp }>ONG</Text>
-                            <Text style={ styles.incidentValue }>{ incident.title }</Text>
+                            <Text style={ styles.incidentValue }>{ incident.ong_name }</Text>
 
                             <Text style={ styles.incidentProp }>CASO:</Text>
-                            <Text style={ styles.incidentValue }>{ incident.description }</Text>
+                            <Text style={ styles.incidentValue }>{ incident.title }</Text>
 
                             <Text style={ styles.incidentProp }>Valor:</Text>
                             <Text style={ styles.incidentValue }>R$ { incident.value.toFixed(2) }</Text>
