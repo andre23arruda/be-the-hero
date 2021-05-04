@@ -89,5 +89,4 @@ Repectivamente:
 Depois:
 - Abrir api.js e adicionar o endereço da sua API
 
-![Mobile 0](/images/mobile_0.jpg?raw=true)
-![Mobile 1](/images/mobile_1.jpg?raw=true)
+![Mobile 0](/images/mobile_0.png?raw=true)
