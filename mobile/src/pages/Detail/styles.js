@@ -94,6 +94,7 @@ export default  StyleSheet.create({
     actionText: {
         fontSize: 15,
         textAlign: 'center',
+        color: '#FFF',
     },
 
 
