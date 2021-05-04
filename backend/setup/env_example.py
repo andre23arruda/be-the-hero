@@ -1,3 +1,5 @@
+# RENAME THIS FILE TO env.py
+# ADD your ipv4 address to os.environ['ALLOWED_HOSTS']
 import os
 
 os.environ['SECRET_KEY'] = '(_nz-7j=$7we1y6$8i%bftxt2l_udez1ou_x7@*_x8t+(0e2lk'
