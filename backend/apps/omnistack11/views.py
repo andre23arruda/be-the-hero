@@ -92,7 +92,7 @@ class OngLogin(viewsets.ReadOnlyModelViewSet):
     '''Login'''
 
     serializer_class = OngSessionSerializer
-    ueryset = Ong.objects.all()
+    queryset = Ong.objects.all()
     http_method_names = ['get']
 
     def get_queryset(self):
