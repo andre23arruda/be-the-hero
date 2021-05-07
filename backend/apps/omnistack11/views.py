@@ -89,7 +89,7 @@ class OngIncidentsList(viewsets.ReadOnlyModelViewSet):
 
 
 class OngLogin(viewsets.ReadOnlyModelViewSet):
-    '''Listando as matriculas de um aluno'''
+    '''Login'''
 
     serializer_class = OngSessionSerializer
     ueryset = Ong.objects.all()
