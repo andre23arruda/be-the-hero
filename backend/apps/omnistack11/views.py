@@ -2,13 +2,9 @@ from django.shortcuts import get_object_or_404
 
 from django_filters.rest_framework import DjangoFilterBackend # ferramenta para filtrar info na API
 from rest_framework import viewsets, filters, generics, status, pagination
-from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import pagination
 from rest_framework.mixins import ListModelMixin
-
-import ast
 
 from .serializers import (
     OngSerializer, OngSessionSerializer,
@@ -96,7 +92,6 @@ class OngLogin(viewsets.ReadOnlyModelViewSet):
     http_method_names = ['get']
 
     def get_queryset(self):
-        '''Função para filtrar as informações de um aluno com a chave'''
         queryset = []
         if 'pk' in self.kwargs:
             queryset = Ong.objects.filter(pk=self.kwargs['pk'])
