@@ -1,5 +1,7 @@
-// Altere para o endereço da sua API
-const baseUrl = 'http://192.168.0.15:8000/api/omnistack11/'
+// Altere para sua ROTA_API
+const ROTA_API = '192.168.0.15:8000'
+
+const baseUrl = `http://${ ROTA_API }:8000/api/omnistack11/`
 
 function postApi(route, formData, auth='') {
     return fetch(
