@@ -13,11 +13,13 @@
 </p>
 
 <p align="center">
-  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#instalação">Instalação</a>
 </p>
 
-## :rocket: Tecnologias
+
+## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -31,8 +33,13 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 **Be the Hero foi feito para mostrar casos em que heróis podem ajudar com alguma doação e salvar o dia. Seja um herói!!**
 
 ## Instalação
+### Pré requisitos
+Ter instalado:
+- [Python](https://www.python.org/downloads/)
+- [Node](https://nodejs.org/en/download/)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 
-## Backend
+### Backend
 Necessário ter o Python instalado em sua máquina. De preferência 3.6 para cima.
 
 #### Primeiro: renomear arquivo com variáveis de ambiente
@@ -40,49 +47,51 @@ Necessário ter o Python instalado em sua máquina. De preferência 3.6 para cim
 
 #### Segundo: no terminal, rodar
 ```sh
-cd backend_django
-python -m venv venv
-. venv/Scripts/activate
-pip install -r requirements.txt
-python manage.py migrate
-```
-Repectivamente:
-- Entrar na pasta dos arquivos do backend
-- Criar um ambiente virtual
-- Ativar o ambiente virtual
-- Instalar todos os pacotes necessários para rodar a aplicação
-- Executar as migrações
+# Entrar na pasta dos arquivos do backend
+cd backend
 
-#### Terceiro: Obter endereço para o seu pc servir os dados da API para os dispostivos da sua rede
-```sh
+# Criar um ambiente virtual
+python -m venv venv
+
+# Ativar o ambiente virtual
+. venv/Scripts/activate
+
+# Instalar os pacotes necessários
+pip install -r requirements.txt
+
+# Executar as migrações
+python manage.py migrate
+
+# Obter endereço para o seu pc servir os dados da API para os dispostivos da sua rede
 python get_api_route.py
 ```
-**O endereço será exibido em tela. Guarde-o. Será necessário colocá-lo no frontend e no mobile (ROTA_API)**
+**O endereço será exibido em tela. Guarde-o. Será necessário colocá-lo no frontend como ROTA_API**
 
 #### Por fim: deixar a API rodando
 
 ```sh
+# Já executará backend com seu endreço IP na rede
 python manage.py runserver_ip
 ```
+
 ![API 0](/images/api_0.png?raw=true)
 
 
-## Frontend
-Necessário ter o node e o yarn instalados na máquina
-
+### Frontend
 #### Primeiro: adicionar endereço do backend
 - Abrir *web/src/services/api.js* e adicionar o endereço da sua API (ROTA_API)
 
 #### Segundo: no terminal, rodar
 ```sh
+# Entrar na pasta dos arquivos do frontend
 cd web
+
+# Instalar os pacotes do projeto
 yarn install
+
+# Rodar
 yarn start
 ```
-Repectivamente:
-- Para entrar na pasta dos arquivos do frontend
-- Instalar os pacotes do projeto
-- Rodar
 
 ![Web 0](/images/web_0.png?raw=true)
 
@@ -90,23 +99,21 @@ Repectivamente:
 
 ![Web 2](/images/web_2.png?raw=true)
 
-## Mobile
-Necessário ter o expo instalado na máquina e ter o expo instalado no celular.
-
+### Mobile
 #### Primeiro: adicionar endereço do backend
 - Abrir *mobile/src/services/api.js* e adicionar o endereço da sua API (ROTA_API)
 
 #### Segundo: no terminal, rodar
 ```sh
+# Entrar na pasta dos arquivos do frontend
 cd mobile
+
+# Instalar os pacotes do projeto
 yarn install
+
+# Rodar
 expo start
 ```
-
-Repectivamente:
-- Para entrar na pasta com os arquivos do mobile
-- Instalar pacotes do projeto
-- Rodar
 
 #### Terceiro: rodar expo no celular
 - Abrir expo no celular
