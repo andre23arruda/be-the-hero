@@ -55,6 +55,7 @@ python -m venv venv
 
 # Ativar o ambiente virtual
 . venv/Scripts/activate
+# ou source ./venv/Scripts/activate
 
 # Instalar os pacotes necessários
 pip install -r requirements.txt
@@ -62,8 +63,8 @@ pip install -r requirements.txt
 # Executar as migrações
 python manage.py migrate
 
-# Obter endereço para o seu pc servir os dados da API para os dispostivos da sua rede
-python get_api_route.py
+# Rodar backend
+python runserver.py
 ```
 **O endereço será exibido em tela. Guarde-o. Será necessário colocá-lo no frontend como ROTA_API**
 
@@ -78,10 +79,7 @@ python manage.py runserver_ip
 
 
 ### Frontend
-#### Primeiro: adicionar endereço do backend
-- Abrir *web/src/services/api.js* e adicionar o endereço da sua API (ROTA_API)
-
-#### Segundo: no terminal, rodar
+#### Nno terminal, rodar
 ```sh
 # Entrar na pasta dos arquivos do frontend
 cd web
@@ -100,10 +98,7 @@ yarn start
 ![Web 2](/images/web_2.png?raw=true)
 
 ### Mobile
-#### Primeiro: adicionar endereço do backend
-- Abrir *mobile/src/services/api.js* e adicionar o endereço da sua API (ROTA_API)
-
-#### Segundo: no terminal, rodar
+#### No terminal, rodar
 ```sh
 # Entrar na pasta dos arquivos do frontend
 cd mobile
