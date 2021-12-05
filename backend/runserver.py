@@ -18,7 +18,7 @@ def get_python_path():
 
 def put_ip_in_api_file(folder: str):
     '''Put ip address in api.js'''
-    FILE_PATTERN = 'const API_URL'
+    FILE_PATTERN = 'const ROTA_API'
     file_path = fr'../{ folder }/src/services/api.js'
 
     with open(file_path, 'r+') as f:

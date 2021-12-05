@@ -40,10 +40,8 @@ Ter instalado:
 - [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 
 ### Backend
-Necessário ter o Python instalado em sua máquina. De preferência 3.6 para cima.
-
-#### Primeiro: renomear arquivo com variáveis de ambiente
--  **Renomear _backend/setup/env_example.py_ para _backend/setup/env.py_**
+#### Primeiro: modificar variáveis de ambiente (se houver)
+-  **_backend/setup/env_example.py_**
 
 #### Segundo: no terminal, rodar
 ```sh
@@ -64,15 +62,7 @@ pip install -r requirements.txt
 python manage.py migrate
 
 # Rodar backend
-python runserver.py
-```
-**O endereço será exibido em tela. Guarde-o. Será necessário colocá-lo no frontend como ROTA_API**
-
-#### Por fim: deixar a API rodando
-
-```sh
-# Já executará backend com seu endreço IP na rede
-python manage.py runserver_ip
+. run.sh
 ```
 
 ![API 0](/images/api_0.png?raw=true)
@@ -100,7 +90,7 @@ yarn start
 ### Mobile
 #### No terminal, rodar
 ```sh
-# Entrar na pasta dos arquivos do frontend
+# Entrar na pasta dos arquivos do projeto mobile
 cd mobile
 
 # Instalar os pacotes do projeto
