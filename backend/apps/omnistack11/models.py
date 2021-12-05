@@ -1,9 +1,11 @@
 from django.db import models
 import uuid
 
+
 def get_uuid_8_length():
     '''Retorna uuid com 8 caracteres'''
     return str(uuid.uuid4())[:8]
+
 
 class Ong(models.Model):
     id = models.CharField(primary_key=True, max_length=8, default=get_uuid_8_length, editable=False)
@@ -15,6 +17,7 @@ class Ong(models.Model):
 
     def __str__(self):
         return f'{ self.name }'
+
 
 class Incident(models.Model):
     title = models.CharField(max_length=255)

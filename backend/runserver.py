@@ -18,7 +18,7 @@ def get_python_path():
 
 def put_ip_in_api_file(folder: str):
     '''Put ip address in api.js'''
-    FILE_PATTERN = 'const ROTA_API'
+    FILE_PATTERN = 'const API_URL'
     file_path = fr'../{ folder }/src/services/api.js'
 
     with open(file_path, 'r+') as f:
@@ -36,7 +36,7 @@ def put_ip_in_api_file(folder: str):
 
 def main():
     '''Run'''
-    subprocess.call(f'{ get_python_path() }\Scripts\python.exe manage.py runserver { get_ip_address() }:{ PORT }')
+    subprocess.call(f'python manage.py runserver { get_ip_address() }:{ PORT }', shell=True)
 
 
 if __name__ == '__main__':
